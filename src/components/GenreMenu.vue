@@ -19,6 +19,10 @@
         <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
             Instrumental
         </div>
+
+        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
+            Classical
+        </div>
     </div>
 </template>
 
