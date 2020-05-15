@@ -4,6 +4,7 @@
 ```
 npm install
 ```
+After installing copy `.npmrc-example` file to `.npmrc` and set the font awesome auth token
 
 ### Compiles and hot-reloads for development
 ```
