@@ -40,7 +40,7 @@ export default {
 }
 
 .view-content {
-    padding-top: 6rem;
+    padding-top: 5.5rem;
 }
 
 

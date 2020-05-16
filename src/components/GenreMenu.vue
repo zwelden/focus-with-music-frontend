@@ -38,14 +38,20 @@ export default {
 .genre-menu {
     position: fixed;
     top: 6rem;
-    right: 6rem;
+    right: calc((100vw - 1280px) / 2);
     border-radius: 10px;
 }
 
 .genre-menu .genre-menu-item {
     width: 6.5rem;
-    height: 4.5rem;
+    height: 3.5rem;
     border-radius: 6px;
     /* background: #efefef; */
+}
+
+@media screen and (max-width: 1280px) {
+    .genre-menu {
+        right: calc((100vh - 768px) / 2)
+    }
 }
 </style>

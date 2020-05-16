@@ -2,9 +2,9 @@
     <div class="top-nav text-xl">
         <div class="max-w-screen-xl flex justify-between items-center mx-auto">
             <div class="top-nav-branding p-2 cursor-pointer">
-                Focus
+                Focus With Music
             </div>
-            <div class="top-nav-menu p-2">
+            <!-- <div class="top-nav-menu p-2">
                 <ul class="m-0 p-0 flex">
                     <li class="text-lg bg-white border border-teal-500 hover:bg-teal-700 text-teal-500 hover:text-white font-medium py-1 px-2 rounded mr-2 cursor-pointer">
                         Login
@@ -13,7 +13,7 @@
                         Signup
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

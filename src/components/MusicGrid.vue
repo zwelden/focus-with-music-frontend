@@ -1,5 +1,5 @@
 <template>
-    <div class="music-grid max-w-screen-lg mx-auto">
+    <div class="music-grid md:max-w-screen-sm lg:max-w-screen-md xl:max-w-screen-lg mx-auto">
         <ul class="flex justify-between flex-wrap">
             <li v-for="musicItem in musicList" v-bind:key="musicItem.id" class="music-box mx-2 my-2 opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
                <SoundCloudBox 
@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            numBoxes: 16,
+            numBoxes: 20,
             musicContent: [
                 {
                     type: 'soundcloud',

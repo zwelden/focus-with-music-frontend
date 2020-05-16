@@ -30,15 +30,21 @@ export default {
 .tools-menu {
     position: fixed;
     top: 6rem;
-    left: 6rem;
+    left: calc((100vw - 1280px) / 2);
     /* background: rgba(255, 255, 255, 0.4); */
     border-radius: 10px;
 }
 
 .tools-menu .tools-menu-item {
-    width: 3.5rem;
+    width: 6.5rem;
     height: 3.5rem;
     border-radius: 6px;
     /* background: #efefef; */
+}
+
+@media screen and (max-width: 1280px) {
+    .tools-menu {
+        left: calc((100vh - 768px) / 2)
+    }
 }
 </style>
