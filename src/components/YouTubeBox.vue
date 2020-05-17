@@ -7,13 +7,23 @@
             frameborder="0" 
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
+
+        <div class="interactions-panel">
+            <MusicInteractionsPanel />
+        </div>
+        
     </div>
 </template>
 
 
 <script>
+import MusicInteractionsPanel from './MusicInteractionsPanel.vue'
+
 export default {
     name: 'YouTubeBox',
+    components: {
+        MusicInteractionsPanel
+    },
     props: ['youtubeSource'],
     data() {
         return {
@@ -25,13 +35,23 @@ export default {
 
 
 <style>
-.cover {
+.youtube-box {
+    position: relative;
+}
+
+.youtube-box:hover .interactions-panel {
+    opacity: 1;
+    z-index: 1;
+}
+
+.youtube-box .interactions-panel {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    background: #fff;
-    opacity: 0.5;
+    right: 0;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    z-index: -1;
 }
 </style>

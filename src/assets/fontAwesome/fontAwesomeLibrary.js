@@ -7,7 +7,9 @@ import {faCog as fasCog } from '@fortawesome/pro-solid-svg-icons'
 import {faAnalytics as fasAnalytics } from '@fortawesome/pro-solid-svg-icons'
 import {faList as fasList } from '@fortawesome/pro-solid-svg-icons'
 import {faStopwatch as fasStopwatch } from '@fortawesome/pro-solid-svg-icons'
+import {faThumbsUp as fasThumbsUp } from '@fortawesome/pro-solid-svg-icons'
+import {faThumbtack as fasThumbtack } from '@fortawesome/pro-solid-svg-icons'
 
-library.add(fasCog, fasAnalytics, fasList, fasStopwatch)
+library.add(fasCog, fasAnalytics, fasList, fasStopwatch, fasThumbsUp, fasThumbtack)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
