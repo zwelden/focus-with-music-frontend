@@ -10,6 +10,8 @@
 
             <ToolsMenu />
 
+            <ToolsDisplay />
+
         </div>
         
     </div>
@@ -21,6 +23,7 @@ import TopNav from '../components/TopNav.vue'
 import MusicGrid from '../components/MusicGrid.vue'
 import GenreMenu from '../components/GenreMenu.vue'
 import ToolsMenu from '../components/ToolsMenu.vue'
+import ToolsDisplay from '../components/ToolsDisplay.vue'
 
 export default {
     name: "HomePage",
@@ -28,7 +31,8 @@ export default {
         TopNav,
         MusicGrid,
         GenreMenu,
-        ToolsMenu
+        ToolsMenu,
+        ToolsDisplay
     }
 }
 </script>
@@ -42,7 +46,6 @@ export default {
 .view-content {
     padding-top: 5.5rem;
 }
-
 
 .home-page-bg {
     /* background-color: #f5f5f5; */

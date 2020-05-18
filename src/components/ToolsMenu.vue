@@ -1,18 +1,26 @@
 <template>
     <div class="tools-menu">
-        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200" 
+            @click="showTool('timer')">
+
             <font-awesome-icon :icon="['fas', 'stopwatch']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
 
-        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200" 
+            @click="showTool('todoList')">
+
             <font-awesome-icon :icon="['fas', 'list']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
 
-        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200"  
+            @click="showTool('analytics')">
+
             <font-awesome-icon :icon="['fas', 'analytics']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
 
-        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200"
+            @click="showTool('configuration')">
+
             <font-awesome-icon :icon="['fas', 'cog']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
     </div>
@@ -20,8 +28,15 @@
 
 
 <script>
+import { EventBus } from '../bus/eventBus'
+
 export default {
-    name: 'ToolsMenu'
+    name: 'ToolsMenu',
+    methods: {
+        showTool (toolName) {
+            EventBus.$emit('showTool', {toolName: toolName});
+        }
+    }
 }
 </script>
 

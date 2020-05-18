@@ -1,10 +1,10 @@
 <template>
     <div class="music-interations-panel">
         <div class="like-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer">
-            <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-lg"></font-awesome-icon>
+            <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-md"></font-awesome-icon>
         </div>
         <div class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer">
-            <font-awesome-icon :icon="['fas', 'thumbtack']" class="text-lg "></font-awesome-icon>
+            <font-awesome-icon :icon="['fas', 'thumbtack']" class="text-md "></font-awesome-icon>
         </div>
     </div>
 </template>

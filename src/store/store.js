@@ -54,6 +54,12 @@ export const store = new Vuex.Store({
                 emedType: 'na',
                 color: ''
             },
+            {
+                type: 'youtube',
+                sourceId: 'O6CyK4HJ2xU',
+                emedType: 'na',
+                color: ''
+            },
         ]
     },
     mutations: {

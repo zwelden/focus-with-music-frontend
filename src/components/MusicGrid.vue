@@ -72,7 +72,6 @@ export default {
 
 
 <style>
-
 .music-box {
     border-radius: 6px;
     overflow: hidden;

@@ -5,11 +5,10 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
   components: {
-  }
+  },
 }
 </script>
 
@@ -17,6 +16,7 @@ export default {
 html, body {
   padding: 0;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +24,9 @@ html, body {
   text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
-}
+
+  max-height: 100vh;
+  overflow-y: auto;
+} 
+
 </style>
