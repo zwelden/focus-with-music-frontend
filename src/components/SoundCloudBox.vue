@@ -10,7 +10,7 @@
         </iframe>
 
         <div class="interactions-panel">
-            <MusicInteractionsPanel />
+            <MusicInteractionsPanel :isPinned="isPinned" :id="id" />
         </div>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
     components: {
         MusicInteractionsPanel
     },
-    props: ['embedType', 'SoundCloudSource', 'playColor']
+    props: ['embedType', 'SoundCloudSource', 'playColor', 'isPinned', 'id']
 }
 </script>
 

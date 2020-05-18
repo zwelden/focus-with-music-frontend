@@ -3,15 +3,24 @@
         <div class="like-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer">
             <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-md"></font-awesome-icon>
         </div>
-        <div class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer">
-            <font-awesome-icon :icon="['fas', 'thumbtack']" class="text-md "></font-awesome-icon>
+        <div class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer" @click="pinMusicItem">
+            <font-awesome-icon :icon="['fas', 'thumbtack']" class="text-md"></font-awesome-icon>
         </div>
     </div>
 </template>
 
 <script>
+// import { EventBus } from '@/bus/eventBus'
+
 export default {
-    name: 'MusicInteractionsPanel'
+    name: 'MusicInteractionsPanel',
+    props: ['isPinned', 'id'],
+    methods: {
+        pinMusicItem () {
+            // EventBus.$emit('pinMusicItem', {id: this.id});
+            this.$store.commit('addPinnedVideo', {id: this.id});
+        }
+    }
 }
 </script>
 

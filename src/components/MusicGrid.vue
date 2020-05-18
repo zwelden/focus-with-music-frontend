@@ -1,5 +1,36 @@
 <template>
     <div class="music-grid md:max-w-screen-sm lg:max-w-screen-md xl:max-w-screen-lg mx-auto">
+        <div class="pinned-items-container mb-8" v-if="pinnedList.length > 0">
+            <h3 class="text-2xl text-left font-semibold text-gray-600 px-2">Pinned Music</h3>
+            <ul class="flex justify-between flex-wrap shadow-md">
+                <li v-for="pinnedItem in pinnedList" v-bind:key="pinnedItem.id" class="music-box mx-2 my-2 opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
+                    <div class="music-box">
+                        <div class="music-box-frame-container">
+                            <SoundCloudBox 
+                                v-if="pinnedItem.type == 'soundcloud'" 
+                                :embed-type="pinnedItem.embedType" 
+                                :sound-cloud-source="pinnedItem.sourceId"
+                                :play-color="pinnedItem.color"
+                                :isPinned="true"
+                                :id="pinnedItem.id"
+                            >
+                            </SoundCloudBox>
+
+                            <YouTubeBox
+                                v-if="pinnedItem.type == 'youtube'"
+                                :youtube-source="pinnedItem.sourceId"
+                                :isPinned="true"
+                                :id="pinnedItem.id"
+                            >
+                            </YouTubeBox>
+                        </div>
+                    </div>
+                
+                </li>
+            </ul>
+        </div>
+        
+
         <ul class="flex justify-between flex-wrap">
             <li v-for="musicItem in musicList" v-bind:key="musicItem.id" class="music-box mx-2 my-2 opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
                 <div class="music-box">
@@ -9,12 +40,16 @@
                             :embed-type="musicItem.embedType" 
                             :sound-cloud-source="musicItem.sourceId"
                             :play-color="musicItem.color"
+                            :isPinned="false"
+                            :id="musicItem.id"
                         >
                         </SoundCloudBox>
 
                         <YouTubeBox
                             v-if="musicItem.type == 'youtube'"
                             :youtube-source="musicItem.sourceId"
+                            :isPinned="false"
+                            :id="musicItem.id"
                         >
                         </YouTubeBox>
                     </div>
@@ -44,14 +79,12 @@ export default {
     computed: {
         musicList () {
             let list = [];
-            let boxId = 0;
+            let boxId = 100;
             let musicListLength = 0;
 
-            for (let item in this.$store.state.musicContent) {
-                let musicPiece = this.$store.state.musicContent[item]
-                musicPiece.id = boxId;
+            for (let index in this.$store.state.musicContent) {
+                let musicPiece = this.$store.state.musicContent[index]
                 list.push(musicPiece)
-                boxId++;
                 musicListLength++;
             }
 
@@ -65,6 +98,20 @@ export default {
             }
 
             return list;
+        },
+        pinnedList () {
+            let list = [];
+
+            if (Object.keys(this.$store.state.pinnedMusicContent).length <= 0) {
+                return [];
+            }
+
+            for (let index in this.$store.state.pinnedMusicContent) {
+                let musicPiece = this.$store.state.pinnedMusicContent[index]
+                list.push(musicPiece)
+            }
+            
+            return list;
         }
     }
 }
@@ -72,6 +119,11 @@ export default {
 
 
 <style>
+.pinned-items-container > ul {
+    background: rgba(0,0,0,.05);
+    border-radius: 6px;
+}
+
 .music-box {
     border-radius: 6px;
     overflow: hidden;

@@ -9,7 +9,7 @@
         </iframe>
 
         <div class="interactions-panel">
-            <MusicInteractionsPanel />
+            <MusicInteractionsPanel :isPinned="isPinned" :id="id" />
         </div>
         
     </div>
@@ -24,12 +24,12 @@ export default {
     components: {
         MusicInteractionsPanel
     },
-    props: ['youtubeSource'],
+    props: ['youtubeSource', 'isPinned', 'id'],
     data() {
         return {
             isPlaying: false
         }
-    }
+    },
 }
 </script>
 
