@@ -3,8 +3,11 @@
         <div class="like-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer">
             <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-md"></font-awesome-icon>
         </div>
-        <div class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer" @click="pinMusicItem">
+        <div v-if="!isPinned" class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-teal-600 cursor-pointer" @click="pinMusicItem">
             <font-awesome-icon :icon="['fas', 'thumbtack']" class="text-md"></font-awesome-icon>
+        </div>
+        <div v-if="isPinned" class="pin-btn flex justify-center items-center shadow-lg text-gray-100 hover:text-red-600 cursor-pointer" @click="unpinMusicItem">
+            <font-awesome-icon :icon="['fas', 'times']" class="text-md"></font-awesome-icon>
         </div>
     </div>
 </template>
@@ -19,6 +22,10 @@ export default {
         pinMusicItem () {
             // EventBus.$emit('pinMusicItem', {id: this.id});
             this.$store.commit('addPinnedVideo', {id: this.id});
+        },
+        unpinMusicItem () {
+            // EventBus.$emit('pinMusicItem', {id: this.id});
+            this.$store.commit('removePinnedVideo', {id: this.id});
         }
     }
 }

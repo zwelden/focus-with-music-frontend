@@ -5,18 +5,26 @@
         </div>
         
 
-        TIMER DISPLAY
+        <div class="timer-container">
+            <TimerRing />
+            
+            <TimerClock />
+        </div>
     </div>
 </template>
 
 
 <script>
 import ToolCloseBtn from './ToolCloseBtn'
+import TimerRing from '@/components/timer/TimerRing.vue'
+import TimerClock from '@/components/timer/TimerClock.vue'
 
 export default {
     name: 'TimerDisplay',
     components: {
-        ToolCloseBtn
+        ToolCloseBtn,
+        TimerRing,
+        TimerClock,
     }
 }
 </script>

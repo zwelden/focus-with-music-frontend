@@ -78,7 +78,13 @@ export const store = new Vuex.Store({
                 emedType: 'na',
                 color: ''
             },
-        ]
+        ],
+        countdownTimer: {
+            timerLength: 0,
+            timeRemaining: 0,
+            timeElapsed: 0,
+            
+        }
     },
     mutations: {
         addPinnedVideo (state, payload) {
@@ -97,6 +103,24 @@ export const store = new Vuex.Store({
                 targetMusicObj = state.musicContent[targetIndex];
                 state.musicContent.splice(targetIndex, 1);
                 state.pinnedMusicContent.push(targetMusicObj);
+            }
+        },
+        removePinnedVideo (state, payload) {
+            let musicId = payload.id;
+            let targetIndex = null;
+            let targetMusicObj = null;
+
+            for (let index in state.pinnedMusicContent) {
+                if (state.pinnedMusicContent[index].id == musicId) {
+                    targetIndex = index;
+                    break;
+                }
+            }
+
+            if (targetIndex !== null && targetIndex >= 0) {
+                targetMusicObj = state.pinnedMusicContent[targetIndex];
+                state.pinnedMusicContent.splice(targetIndex, 1);
+                state.musicContent.push(targetMusicObj);
             }
         }
     },
