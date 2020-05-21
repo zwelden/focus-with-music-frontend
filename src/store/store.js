@@ -80,10 +80,10 @@ export const store = new Vuex.Store({
             },
         ],
         countdownTimer: {
-            timerLength: 0,
-            timeRemaining: 0,
-            timeElapsed: 0,
-            
+            // timer: interval
+            timerLength: 300,
+            timeRemaining: 200,
+
         }
     },
     mutations: {
@@ -105,6 +105,7 @@ export const store = new Vuex.Store({
                 state.pinnedMusicContent.push(targetMusicObj);
             }
         },
+
         removePinnedVideo (state, payload) {
             let musicId = payload.id;
             let targetIndex = null;
@@ -122,6 +123,38 @@ export const store = new Vuex.Store({
                 state.pinnedMusicContent.splice(targetIndex, 1);
                 state.musicContent.push(targetMusicObj);
             }
+        },
+
+        stopTimer (state) {
+            clearInterval(state.countdownTimer.timer);
+        },
+
+        setTimer (state, timer) {
+            state.countdownTimer.timer = timer;
+        },
+
+        resetTimer (state) {
+            clearInterval(state.countdownTimer.timer);
+            state.countdownTimer.timeRemaining = state.countdownTimer.timerLength;
+        },
+
+        setTimerLength (state, payload) {
+            state.countdownTimer.timerLength = payload.timerLength;
+            state.countdownTimer.timeRemaining = payload.timerLength;
+        },
+
+        timerCountDown (state) {
+            state.countdownTimer.timeRemaining -= 1;
+
+            if (state.countdownTimer.timeRemaining <= 0) {
+                clearInterval(state.countdownTimer.timer);
+            }
         }
-    },
+    }, 
+    actions: {
+        startTimer ({ commit }) {
+            commit('stopTimer');
+            commit('setTimer', setInterval(() => { commit('timerCountDown')}, 1000));
+        }
+    }
 })

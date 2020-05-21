@@ -5,7 +5,7 @@
                 <circle class="timer-ring-circle-path" cx="50" cy="50" r="45"></circle>
                 <path 
                     id="timer-ring-path-remaining"
-                    stroke-dasharray="283"
+                    :stroke-dasharray="circleCompletionValue"
                     class="timer-ring-path-remaining"
                     d="
                         M 50, 50
@@ -23,7 +23,22 @@
 
 <script>
 export default {
-    name: 'TimerRing'
+    name: 'TimerRing',
+    computed: {
+        timerLength () {
+            return this.$store.state.countdownTimer.timerLength;
+        },
+
+        timeRemaining () {
+            return this.$store.state.countdownTimer.timeRemaining;
+        },
+
+        circleCompletionValue () {
+            let percentComplete  = this.timeRemaining / this.timerLength;
+            let dashArrayFractional = 283 * percentComplete;
+            return dashArrayFractional + ' 283';
+        },
+    }
 }
 </script>
 
@@ -41,13 +56,13 @@ export default {
 
 .timer-ring-circle-path {
     stroke-width: 5px;
-    stroke: none;
+    stroke: #ececef;
 }
 
 .timer-ring-path-remaining {
     stroke-width: 5px;
     stroke: #4fd1c5;
-    stroke-linecap: round;
+    /* stroke-linecap: round; */
     transform-origin: center;
     transform: rotate(90deg);
     transition: 1s linear all;

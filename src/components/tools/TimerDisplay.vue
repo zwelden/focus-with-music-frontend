@@ -9,6 +9,8 @@
             <TimerRing />
             
             <TimerClock />
+
+            <TimerActions />
         </div>
     </div>
 </template>
@@ -18,6 +20,7 @@
 import ToolCloseBtn from './ToolCloseBtn'
 import TimerRing from '@/components/timer/TimerRing.vue'
 import TimerClock from '@/components/timer/TimerClock.vue'
+import TimerActions from '@/components/timer/TimerActions.vue'
 
 export default {
     name: 'TimerDisplay',
@@ -25,6 +28,7 @@ export default {
         ToolCloseBtn,
         TimerRing,
         TimerClock,
+        TimerActions
     }
 }
 </script>

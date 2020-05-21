@@ -10,7 +10,10 @@ import {faStopwatch as fasStopwatch } from '@fortawesome/pro-solid-svg-icons'
 import {faThumbsUp as fasThumbsUp } from '@fortawesome/pro-solid-svg-icons'
 import {faThumbtack as fasThumbtack } from '@fortawesome/pro-solid-svg-icons'
 import {faTimes as fasTimes } from '@fortawesome/pro-solid-svg-icons'
+import {faPlay as fasPlay } from '@fortawesome/pro-solid-svg-icons'
+import {faPause as fasPause } from '@fortawesome/pro-solid-svg-icons'
+import {faUndoAlt as fasUndoAlt } from '@fortawesome/pro-solid-svg-icons'
 
-library.add(fasCog, fasAnalytics, fasList, fasStopwatch, fasThumbsUp, fasThumbtack, fasTimes)
+library.add(fasCog, fasAnalytics, fasList, fasStopwatch, fasThumbsUp, fasThumbtack, fasTimes, fasPlay, fasPause, fasUndoAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
