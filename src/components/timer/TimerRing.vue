@@ -45,8 +45,8 @@ export default {
 
 <style>
 .timer-ring-svg {
-    height: 350px;
-    width: 350px;
+    height: 100%;
+    width: 100%;
 }
 
 .timer-ring-circle {

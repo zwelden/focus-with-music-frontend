@@ -6,11 +6,21 @@
         
 
         <div class="timer-container">
-            <TimerRing />
+            <div class="timer-countdown-visuals mb-4">
+                <div class="timer-ring-wrapper">
+                    <TimerRing />
+                </div>
+                
+                <div class="timer-clock-wrapper">
+                    <TimerClock />
+                </div>
+            </div>
             
-            <TimerClock />
-
-            <TimerActions />
+            
+            <div class="timer-actions-wrapper">
+                <TimerActions />
+            </div>
+            
         </div>
     </div>
 </template>
@@ -39,5 +49,37 @@ export default {
     min-height: 65vh;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
+
+.timer-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.timer-countdown-visuals {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: auto;
+}
+
+.timer-ring-wrapper {
+    width: 350px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timer-clock-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 </style>
