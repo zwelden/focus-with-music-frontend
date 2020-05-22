@@ -6,7 +6,10 @@
         
 
         <div class="timer-container">
-            <div class="timer-countdown-visuals mb-4">
+
+            <TimerTitle class="mb-2"/>
+
+            <div class="timer-countdown-visuals mb-6">
                 <div class="timer-ring-wrapper">
                     <TimerRing />
                 </div>
@@ -20,7 +23,7 @@
             <div class="timer-actions-wrapper">
                 <TimerActions />
             </div>
-            
+
         </div>
     </div>
 </template>
@@ -31,6 +34,7 @@ import ToolCloseBtn from './ToolCloseBtn'
 import TimerRing from '@/components/timer/TimerRing.vue'
 import TimerClock from '@/components/timer/TimerClock.vue'
 import TimerActions from '@/components/timer/TimerActions.vue'
+import TimerTitle from '@/components/timer/TimerTitle.vue'
 
 export default {
     name: 'TimerDisplay',
@@ -38,7 +42,8 @@ export default {
         ToolCloseBtn,
         TimerRing,
         TimerClock,
-        TimerActions
+        TimerActions,
+        TimerTitle
     }
 }
 </script>

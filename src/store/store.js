@@ -159,6 +159,11 @@ export const store = new Vuex.Store({
     actions: {
         startTimer ({ commit, state }) {
             commit('stopTimer');
+
+            if (state.countdownTimer.timeRemaining <= 0) {
+                state.countdownTimer.timeRemaining = state.countdownTimer.timerLength;
+            }
+
             commit('setTimer', setInterval(() => { commit('timerCountDown')}, 1000));
             state.countdownTimer.timerRunning = true;
         }
