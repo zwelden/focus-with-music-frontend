@@ -81,9 +81,10 @@ export const store = new Vuex.Store({
         ],
         countdownTimer: {
             // timer: interval
-            timerLength: 300,
-            timeRemaining: 200,
-
+            completionSound: new Audio(require('@/assets/sounds/completion_sound.mp3')),
+            timerLength: 60,
+            timeRemaining: 60,
+            timerRunning: false,
         }
     },
     mutations: {
@@ -127,6 +128,7 @@ export const store = new Vuex.Store({
 
         stopTimer (state) {
             clearInterval(state.countdownTimer.timer);
+            state.countdownTimer.timerRunning = false;
         },
 
         setTimer (state, timer) {
@@ -136,6 +138,7 @@ export const store = new Vuex.Store({
         resetTimer (state) {
             clearInterval(state.countdownTimer.timer);
             state.countdownTimer.timeRemaining = state.countdownTimer.timerLength;
+            state.countdownTimer.timerRunning = false;
         },
 
         setTimerLength (state, payload) {
@@ -148,13 +151,16 @@ export const store = new Vuex.Store({
 
             if (state.countdownTimer.timeRemaining <= 0) {
                 clearInterval(state.countdownTimer.timer);
+                state.countdownTimer.completionSound.play();
+                state.countdownTimer.timerRunning = false;
             }
         }
     }, 
     actions: {
-        startTimer ({ commit }) {
+        startTimer ({ commit, state }) {
             commit('stopTimer');
             commit('setTimer', setInterval(() => { commit('timerCountDown')}, 1000));
+            state.countdownTimer.timerRunning = true;
         }
     }
 })
