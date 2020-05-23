@@ -85,6 +85,16 @@ export const store = new Vuex.Store({
             timerLength: 60,
             timeRemaining: 60,
             timerRunning: false,
+        },
+        pomodoro: {
+            config: {},
+            defaultConfig: {
+                numPomodoros: 4,
+                focusLength: 25,
+                restLength: 5,
+                longRestLength: 15,
+                autoContinue: false
+            }
         }
     },
     mutations: {
@@ -154,7 +164,7 @@ export const store = new Vuex.Store({
                 state.countdownTimer.completionSound.play();
                 state.countdownTimer.timerRunning = false;
             }
-        }
+        },
     }, 
     actions: {
         startTimer ({ commit, state }) {

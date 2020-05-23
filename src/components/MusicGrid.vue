@@ -3,28 +3,29 @@
         <div class="pinned-items-container mb-8" v-if="pinnedList.length > 0">
             <h3 class="text-2xl text-left font-semibold text-gray-600 px-2">Pinned Music</h3>
             <ul class="flex justify-between flex-wrap shadow-md">
-                <li v-for="pinnedItem in pinnedList" v-bind:key="pinnedItem.id" class="music-box mx-2 my-2 opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
-                    <div class="music-box">
-                        <div class="music-box-frame-container">
-                            <SoundCloudBox 
-                                v-if="pinnedItem.type == 'soundcloud'" 
-                                :embed-type="pinnedItem.embedType" 
-                                :sound-cloud-source="pinnedItem.sourceId"
-                                :play-color="pinnedItem.color"
-                                :isPinned="true"
-                                :id="pinnedItem.id"
-                            >
-                            </SoundCloudBox>
+                <li v-for="pinnedItem in pinnedList" v-bind:key="pinnedItem.id" class="mx-2 my-2">
 
-                            <YouTubeBox
-                                v-if="pinnedItem.type == 'youtube'"
-                                :youtube-source="pinnedItem.sourceId"
-                                :isPinned="true"
-                                :id="pinnedItem.id"
-                            >
-                            </YouTubeBox>
-                        </div>
+                    <div v-if="pinnedItem.type == 'soundcloud' || pinnedItem.type == 'youtube'" class="music-box music-box-frame-container opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
+                        <SoundCloudBox 
+                            v-if="pinnedItem.type == 'soundcloud'" 
+                            :embed-type="pinnedItem.embedType" 
+                            :sound-cloud-source="pinnedItem.sourceId"
+                            :play-color="pinnedItem.color"
+                            :isPinned="true"
+                            :id="pinnedItem.id"
+                        >
+                        </SoundCloudBox>
+
+                        <YouTubeBox
+                            v-if="pinnedItem.type == 'youtube'"
+                            :youtube-source="pinnedItem.sourceId"
+                            :isPinned="true"
+                            :id="pinnedItem.id"
+                        >
+                        </YouTubeBox>
                     </div>
+
+                    <div v-else class="music-box-frame-container"></div>
                 
                 </li>
             </ul>
@@ -32,28 +33,29 @@
         
 
         <ul class="flex justify-between flex-wrap">
-            <li v-for="musicItem in musicList" v-bind:key="musicItem.id" class="music-box mx-2 my-2 opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
-                <div class="music-box">
-                    <div class="music-box-frame-container">
-                        <SoundCloudBox 
-                            v-if="musicItem.type == 'soundcloud'" 
-                            :embed-type="musicItem.embedType" 
-                            :sound-cloud-source="musicItem.sourceId"
-                            :play-color="musicItem.color"
-                            :isPinned="false"
-                            :id="musicItem.id"
-                        >
-                        </SoundCloudBox>
+            <li v-for="musicItem in musicList" v-bind:key="musicItem.id" class="mx-2 my-2">
 
-                        <YouTubeBox
-                            v-if="musicItem.type == 'youtube'"
-                            :youtube-source="musicItem.sourceId"
-                            :isPinned="false"
-                            :id="musicItem.id"
-                        >
-                        </YouTubeBox>
-                    </div>
+                <div v-if="musicItem.type == 'soundcloud' || musicItem.type == 'youtube'" class="music-box-frame-container music-box opacity-75 hover:opacity-100 shadow-md hover:shadow-lg bg-gray-300">
+                    <SoundCloudBox 
+                        v-if="musicItem.type == 'soundcloud'" 
+                        :embed-type="musicItem.embedType" 
+                        :sound-cloud-source="musicItem.sourceId"
+                        :play-color="musicItem.color"
+                        :isPinned="false"
+                        :id="musicItem.id"
+                    >
+                    </SoundCloudBox>
+
+                    <YouTubeBox
+                        v-if="musicItem.type == 'youtube'"
+                        :youtube-source="musicItem.sourceId"
+                        :isPinned="false"
+                        :id="musicItem.id"
+                    >
+                    </YouTubeBox>
                 </div>
+
+                <div v-else class="music-box-frame-container"></div>
                
             </li>
         </ul>
@@ -73,24 +75,22 @@ export default {
     },
     data() {
         return {
-            numBoxes: 20,
+            // data here
         }
     },
     computed: {
         musicList () {
             let list = [];
             let boxId = 100;
-            let musicListLength = 0;
 
             for (let index in this.$store.state.musicContent) {
                 let musicPiece = this.$store.state.musicContent[index]
                 list.push(musicPiece)
-                musicListLength++;
             }
 
             
-            if (list.length < this.numBoxes) {
-                for (let i = 0; i < (this.numBoxes - musicListLength); i++) {
+            if (list.length % 4 !== 0) {
+                for (let i = 0; i < (list.length % 4); i++) {
                     let emptyBox = {type: 'emptyBox', id: boxId};
                     list.push(emptyBox);
                     boxId++;
@@ -101,6 +101,7 @@ export default {
         },
         pinnedList () {
             let list = [];
+             let boxId = 100;
 
             if (Object.keys(this.$store.state.pinnedMusicContent).length <= 0) {
                 return [];
@@ -109,6 +110,14 @@ export default {
             for (let index in this.$store.state.pinnedMusicContent) {
                 let musicPiece = this.$store.state.pinnedMusicContent[index]
                 list.push(musicPiece)
+            }
+
+            if (list.length % 4 !== 0) {
+                for (let i = 0; i < (list.length % 4); i++) {
+                    let emptyBox = {type: 'emptyBox', id: boxId};
+                    list.push(emptyBox);
+                    boxId++;
+                }
             }
             
             return list;
