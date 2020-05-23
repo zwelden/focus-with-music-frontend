@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { EventBus } from '@/bus/eventBus'
 
 Vue.use(Vuex)
 
@@ -87,13 +88,15 @@ export const store = new Vuex.Store({
             timerRunning: false,
         },
         pomodoro: {
-            pomodoroTimers: {},
+            pomodoros: [],
+            currentPomodoro: 0,
+            currentPomodoroStep: 'start',
             config: {},
             defaultConfig: {
                 numPomodoros: 4,
-                focusLength: 25,
-                restLength: 5,
-                longRestLength: 15,
+                focusLength: 1500,
+                restLength: 300,
+                longRestLength: 900,
                 autoContinue: false
             }
         }
@@ -164,10 +167,87 @@ export const store = new Vuex.Store({
                 clearInterval(state.countdownTimer.timer);
                 state.countdownTimer.completionSound.play();
                 state.countdownTimer.timerRunning = false;
+
+                EventBus.$emit('timer-finsihed');
             }
         },
+
+        createPomodoros (state) {
+            state.pomodoro.pomodoros = [];
+            if (Object.keys(state.pomodoro.config).length <= 0) {
+                state.pomodoro.config = state.pomodoro.defaultConfig;
+            }
+
+            let pomoConfig = state.pomodoro.config;
+
+            for (let pomodoroCount = 1; pomodoroCount <= pomoConfig.numPomodoros; pomodoroCount++) {
+                let focusLength = pomoConfig.focusLength;
+                let restLength = (pomodoroCount === pomoConfig.numPomodoros) ? pomoConfig.longRestLength : pomoConfig.restLength;
+
+                state.pomodoro.pomodoros.push({focus: focusLength, rest: restLength});
+            }
+        },
+
+        updatePomodoroConfig (state, payload) {
+            if (!payload) {
+                payload = {};
+
+            }
+            if (!payload.newConfig) {
+                payload.newConfig = {};
+            }
+
+            Object.assign(state.pomodoro.config, state.pomodoro.defaultConfig, payload.newConfig);
+        },
+
+        updatePomodoroIndicies (state) {
+            let nextPomodoroStep = {
+                'start' : 'focus',
+                'focus' : 'rest',
+                'rest' : 'focus'
+            };
+
+            let isStart = (state.pomodoro.currentPomodoroStep === 'start') ? true : false;
+            let nextStep = nextPomodoroStep[state.pomodoro.currentPomodoroStep];
+            state.pomodoro.currentPomodoroStep = nextStep;
+
+            if (isStart === false && nextStep === 'focus') {
+                state.pomodoro.currentPomodoro += 1;
+            } 
+        },
+
+        stageNextPomodoro (state) {
+            let pomodoroStep = state.pomodoro.currentPomodoroStep;
+            let pomodoroIndex = state.pomodoro.currentPomodoro;  
+            let currentPomodoro = state.pomodoro.pomodoros[pomodoroIndex];
+            let timerLength = currentPomodoro[pomodoroStep];
+
+            state.countdownTimer.timerLength = timerLength;
+            state.countdownTimer.timeRemaining = timerLength;
+        }
     }, 
     actions: {
+        initPomodoros ({ commit, state }) {
+            if (Object.keys(state.pomodoro.config).length <= 0) {
+                commit('updatePomodoroConfig');
+            }
+
+            commit('createPomodoros');
+            commit('updatePomodoroIndicies');
+            commit('stageNextPomodoro');
+        },
+
+        loadNextPomodoro({ commit, state }) {
+            commit('updatePomodoroIndicies');
+
+            if (state.pomodoro.currentPomodoro >= state.pomodoro.pomodoros.length) {
+                state.pomodoro.currentPomodoroStep = 'focus';
+                state.pomodoro.currentPomodoro = 0;
+            }
+
+            commit('stageNextPomodoro');
+        },
+
         startTimer ({ commit, state }) {
             commit('stopTimer');
 

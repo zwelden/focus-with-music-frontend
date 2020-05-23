@@ -36,6 +36,8 @@ import TimerClock from '@/components/timer/TimerClock.vue'
 import TimerActions from '@/components/timer/TimerActions.vue'
 import TimerTitle from '@/components/timer/TimerTitle.vue'
 
+import { EventBus } from '@/bus/eventBus'
+
 export default {
     name: 'TimerDisplay',
     components: {
@@ -44,6 +46,16 @@ export default {
         TimerClock,
         TimerActions,
         TimerTitle
+    },
+    created () {
+        if (this.$store.state.pomodoro.pomodoros.length <= 0) {
+            this.$store.dispatch('initPomodoros');
+
+            EventBus.$on('timer-finsihed', () => {
+                this.$store.dispatch('loadNextPomodoro');
+            })
+        }
+        
     }
 }
 </script>

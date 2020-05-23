@@ -9,7 +9,7 @@
             <GenreMenu />
 
             <ToolsMenu />
-
+            
             <ToolsDisplay />
 
         </div>
