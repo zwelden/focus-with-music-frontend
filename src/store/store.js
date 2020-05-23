@@ -87,6 +87,7 @@ export const store = new Vuex.Store({
             timerRunning: false,
         },
         pomodoro: {
+            pomodoroTimers: {},
             config: {},
             defaultConfig: {
                 numPomodoros: 4,

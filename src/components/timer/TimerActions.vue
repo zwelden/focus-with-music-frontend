@@ -1,12 +1,15 @@
 <template>
-    <div class="timer-actions flex justify-center">
-        <div v-if="!timerRunning" class="play-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-200 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer" @click="startTimer">
+    <div class="timer-actions flex justify-center items-center">
+        <div class="timer-config-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-300 bg-opacity-75 hover:bg-opacity-100 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer" @click="editTimer">
+            <font-awesome-icon :icon="['fas', 'cog']" class=""></font-awesome-icon>
+        </div>
+        <div v-if="!timerRunning" class="play-btn rounded-lg p-4 relative mx-2 text-4xl bg-gray-300 bg-opacity-75 hover:bg-opacity-100 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer" @click="startTimer">
             <font-awesome-icon :icon="['fas', 'play']" class=""></font-awesome-icon>
         </div>
-        <div v-if="timerRunning" class="pause-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-200 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer" @click="stopTimer">
+        <div v-if="timerRunning" class="pause-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-300 bg-opacity-75 hover:bg-opacity-100 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer" @click="stopTimer">
             <font-awesome-icon :icon="['fas', 'pause']" class=""></font-awesome-icon>
         </div>
-        <div class="reset-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-200 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer"  @click="resetTimer">
+        <div class="reset-btn rounded-lg p-4 relative mx-2 text-3xl bg-gray-300 bg-opacity-75 hover:bg-opacity-100 shadow-md text-teal-500 hover:bg-teal-400 hover:text-gray-100 cursor-pointer"  @click="resetTimer">
             <font-awesome-icon :icon="['fas', 'undo-alt']" class=""></font-awesome-icon>
         </div>
     </div>
@@ -29,7 +32,9 @@ export default {
             this.$store.commit('resetTimer');
         },
 
-        
+        editTimer () {
+            alert('editing timer');
+        }    
     },
     computed: {
         timerRunning () {
@@ -42,12 +47,18 @@ export default {
 
 <style>
 .play-btn,
-.pause-btn,
+.pause-btn {
+    height: 4rem;
+    width: 4rem;
+}
+
+.timer-config-btn,
 .reset-btn {
     height: 3rem;
     width: 3rem;
 }
 
+.timer-config-btn svg,
 .play-btn svg,
 .pause-btn svg,
 .reset-btn svg {
