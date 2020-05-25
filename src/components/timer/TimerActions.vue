@@ -33,7 +33,7 @@ export default {
         },
 
         editTimer () {
-            alert('editing timer');
+            this.$store.commit('setTimerConfigActive');
         }    
     },
     computed: {

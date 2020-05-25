@@ -65,7 +65,7 @@ export default {
 }
 
 .tools-menu .tools-menu-item {
-    width: 6.5rem;
+    width: 3.5rem;
     height: 3.5rem;
     border-radius: 6px;
     /* background: #efefef; */
@@ -74,7 +74,7 @@ export default {
 .side-timer-ring-wrapper {
     position: absolute;
     top: 50%;
-    left: -3rem;
+    right: -3rem;
     width: 2rem;
     transform: translateY(-50%);
 }

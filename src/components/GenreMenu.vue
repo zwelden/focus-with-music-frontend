@@ -1,28 +1,13 @@
 <template>
     <div class="genre-menu">
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            Electronic
+        <div class="genre-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+            <font-awesome-icon :icon="['fas', 'search']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
 
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            LoFi
+        <div class="genre-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200">
+            <font-awesome-icon :icon="['fas', 'sliders-h']" class="text-2xl text-teal-700"></font-awesome-icon>
         </div>
 
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            Jazz
-        </div>
-
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            Ambient
-        </div>
-
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            Instrumental
-        </div>
-
-        <div class="genre-menu-item flex justify-center items-center text-teal-700 font-medium shadow-md hover:shadow-lg cursor-pointer mb-4 bg-gray-200">
-            Classical
-        </div>
     </div>
 </template>
 
@@ -43,7 +28,7 @@ export default {
 }
 
 .genre-menu .genre-menu-item {
-    width: 6.5rem;
+    width: 3.5rem;
     height: 3.5rem;
     border-radius: 6px;
     /* background: #efefef; */

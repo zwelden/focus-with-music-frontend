@@ -79,6 +79,13 @@ export const store = new Vuex.Store({
                 emedType: 'na',
                 color: ''
             },
+            {
+                id: 11,
+                type: 'youtube',
+                sourceId: 'waqxrK-EFI0',
+                emedType: 'na',
+                color: ''
+            },
         ],
         countdownTimer: {
             // timer: interval
@@ -86,6 +93,7 @@ export const store = new Vuex.Store({
             timerLength: 60,
             timeRemaining: 60,
             timerRunning: false,
+            timerConfigActive: false
         },
         pomodoro: {
             pomodoros: [],
@@ -224,6 +232,31 @@ export const store = new Vuex.Store({
 
             state.countdownTimer.timerLength = timerLength;
             state.countdownTimer.timeRemaining = timerLength;
+        },
+
+
+        setTimerConfigActive (state) {
+            state.countdownTimer.timerConfigActive = true;
+        },
+
+        setTimerConfigInactive (state) {
+            state.countdownTimer.timerConfigActive = false;
+        },
+
+        changePomodoroFocusLength (state, payload) {
+            state.pomodoro.config.focusLength = payload.newFocusLength;
+        },
+
+        changePomodoroRestLength (state, payload) {
+            state.pomodoro.config.restLength = payload.newRestLength;
+        },
+
+        changePomodoroLongRestLength (state, payload) {
+            state.pomodoro.config.longRestLength = payload.newLongRestLength;
+        },
+
+        changePomodoroIntervals (state, payload) {
+            state.pomodoro.config.numPomodoros = payload.intervals;
         }
     }, 
     actions: {
@@ -231,6 +264,25 @@ export const store = new Vuex.Store({
             if (Object.keys(state.pomodoro.config).length <= 0) {
                 commit('updatePomodoroConfig');
             }
+
+            state.pomodoro.currentPomodoroStep = 'start';
+            state.pomodoro.currentPomodoro = 0;
+
+            commit('createPomodoros');
+            commit('updatePomodoroIndicies');
+            commit('stageNextPomodoro');
+        },
+
+        updatePomodoroConfig ({ commit, state }, payload) {
+            let newConfig = payload.newConfig;
+            
+            state.pomodoro.config.focusLength = newConfig.focusLength;
+            state.pomodoro.config.restLength = newConfig.restLength;
+            state.pomodoro.config.longRestLength = newConfig.longRestLength;
+            state.pomodoro.config.numPomodoros = newConfig.numPomodoros;
+
+            state.pomodoro.currentPomodoroStep = 'start';
+            state.pomodoro.currentPomodoro = 0;
 
             commit('createPomodoros');
             commit('updatePomodoroIndicies');

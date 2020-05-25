@@ -1,5 +1,5 @@
 <template>
-    <div class="timer-title flex justify-center items-center">
+    <div class="timer-title flex justify-center items-center leading-none">
         <div class="focus-title section-title font-semibold mx-3" :class="isFocusStep ? 'text-2xl text-teal-600' : 'text-xl text-gray-400'">
             Focus
         </div>

@@ -13,7 +13,30 @@ import {faTimes as fasTimes } from '@fortawesome/pro-solid-svg-icons'
 import {faPlay as fasPlay } from '@fortawesome/pro-solid-svg-icons'
 import {faPause as fasPause } from '@fortawesome/pro-solid-svg-icons'
 import {faUndoAlt as fasUndoAlt } from '@fortawesome/pro-solid-svg-icons'
+import {faSearch as fasSearch } from '@fortawesome/pro-solid-svg-icons'
+import {faSlidersH as fasSlidersH } from '@fortawesome/pro-solid-svg-icons'
+import {faChevronRight as fasChevronRight } from '@fortawesome/pro-solid-svg-icons'
+import {faChevronLeft as fasChevronLeft } from '@fortawesome/pro-solid-svg-icons'
+import {faArrowLeft as fasArrowLeft } from '@fortawesome/pro-solid-svg-icons'
+import {faCheck as fasCheck } from '@fortawesome/pro-solid-svg-icons'
 
-library.add(fasCog, fasAnalytics, fasList, fasStopwatch, fasThumbsUp, fasThumbtack, fasTimes, fasPlay, fasPause, fasUndoAlt)
+library.add(
+    fasCog, 
+    fasAnalytics, 
+    fasList, 
+    fasStopwatch, 
+    fasThumbsUp, 
+    fasThumbtack, 
+    fasTimes, 
+    fasPlay, 
+    fasPause, 
+    fasUndoAlt, 
+    fasSearch, 
+    fasSlidersH,
+    fasChevronRight,
+    fasChevronLeft,
+    fasArrowLeft,
+    fasCheck
+)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

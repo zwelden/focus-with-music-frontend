@@ -1,5 +1,5 @@
 <template>
-    <div class="timer-clock text-center text-6xl text-teal-700 font-semibold">
+    <div class="timer-clock text-center text-6xl text-teal-700 font-semibold leading-none">
         {{ timeRemaining }}
     </div>
 </template>
