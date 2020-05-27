@@ -5,18 +5,27 @@
             <ToolCloseBtn />
         </div>
         
-        TODO LIST DISPLAY
+        <div class="max-w-md text-center m-auto">
+            <TodoItemEntry class="mb-8"/>
+
+            <TodoList />
+        </div>
+        
     </div>
 </template>
 
 
 <script>
 import ToolCloseBtn from './ToolCloseBtn'
+import TodoItemEntry from '@/components/todo_list/TodoItemEntry.vue'
+import TodoList from '@/components/todo_list/TodoList.vue'
 
 export default {
     name: 'TodoListDisplay',
     components: {
-        ToolCloseBtn
+        ToolCloseBtn,
+        TodoItemEntry,
+        TodoList
     }
 }
 </script>

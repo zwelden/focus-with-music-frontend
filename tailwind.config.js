@@ -2,7 +2,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  variants: {},
+  variants: {
+    borderWidth: ['last']
+  },
   plugins: [],
   purge: {
     enabled: process.env.NODE_ENV === 'production',
