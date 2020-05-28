@@ -2,19 +2,19 @@
     <li @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <div class="rounded-lg flex text-gray-700 hover:text-teal-600 hover:bg-white hover:shadow-sm px-3 py-4" >
             <div class="completion-icon-wrapper mr-4">
-                <div class="completion-icon relative cursor-pointer mt-1" @click="toggleTodoComplete">
-                    <font-awesome-icon :icon="['fas', 'square']" class="text-gray-300 opacity-75 text-2xl"></font-awesome-icon>
+                <div class="completion-icon relative cursor-pointer mt-1" @click="toggleTodoComplete" @mouseenter="checkBoxHovered = true" @mouseleave="checkBoxHovered = false">
+                    <font-awesome-icon :icon="['fas', 'square']" class="opacity-75 text-2xl" :class="todoItem.complete ? 'text-gray-200' : 'text-gray-300'"></font-awesome-icon>
 
                     <div class="completion-check" 
-                        :class="{'opacity-50': (!todoItem.complete && isHovered)}" 
-                        v-if="todoItem.complete || (!todoItem.complete && isHovered)">
+                        :class="{'opacity-50': (!todoItem.complete && checkBoxHovered)}" 
+                        v-if="todoItem.complete || (!todoItem.complete && checkBoxHovered)">
                         
                         <font-awesome-icon :icon="['fal', 'check']" class="text-teal-500 text-2xl"></font-awesome-icon>
                     </div>
                 </div>
             </div>
 
-            <div class="todo-text text-xl leading-tight mr-4 text-left" :class="{'opacity-50': todoItem.complete}">
+            <div class="todo-text text-xl leading-tight mr-4 text-left" :class="{'line-through opacity-50': todoItem.complete}">
                 {{ todoItem.todoText }}
             </div>
 
@@ -33,7 +33,8 @@ export default {
     name: 'TodoItem',
     data () {
         return {
-            isHovered: false
+            isHovered: false,
+            checkBoxHovered: false
         }
     },
     props: {

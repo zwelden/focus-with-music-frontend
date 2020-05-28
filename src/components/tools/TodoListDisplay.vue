@@ -6,7 +6,7 @@
         </div>
         
         <div class="max-w-md text-center m-auto">
-            <TodoItemEntry class="mb-8"/>
+            <TodoItemEntry class="mb-10"/>
 
             <TodoList />
         </div>

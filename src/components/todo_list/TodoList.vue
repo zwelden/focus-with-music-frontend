@@ -6,6 +6,10 @@
                 :todoItem="todo"
                 :key="todo.id">
             </TodoItem>
+
+            <div v-if="todoList.length == 0" class="text-gray-600 text-xl py-8">
+                No Todo Items Yet
+            </div>
         </ul>
     </div>
 </template>
