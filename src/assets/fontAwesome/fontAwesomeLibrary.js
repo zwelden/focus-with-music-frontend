@@ -19,6 +19,7 @@ import {faChevronRight as fasChevronRight } from '@fortawesome/pro-solid-svg-ico
 import {faChevronLeft as fasChevronLeft } from '@fortawesome/pro-solid-svg-icons'
 import {faArrowLeft as fasArrowLeft } from '@fortawesome/pro-solid-svg-icons'
 import {faCheck as fasCheck } from '@fortawesome/pro-solid-svg-icons'
+import {faCheck as falCheck } from '@fortawesome/pro-light-svg-icons'
 import {faPlus as fasPlus } from '@fortawesome/pro-solid-svg-icons'
 import {faSquare as fasSquare } from '@fortawesome/pro-solid-svg-icons'
 import {faTrashAlt as fasTrashAlt } from '@fortawesome/pro-solid-svg-icons'
@@ -40,9 +41,10 @@ library.add(
     fasChevronLeft,
     fasArrowLeft,
     fasCheck,
+    falCheck,
     fasPlus,
     fasSquare,
-    fasTrashAlt
+    fasTrashAlt,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

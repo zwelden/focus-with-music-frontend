@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { EventBus } from '@/bus/eventBus'
@@ -107,6 +108,9 @@ export const store = new Vuex.Store({
                 longRestLength: 900,
                 autoContinue: false
             }
+        },
+        todoList: {
+            todos: []
         }
     },
     mutations: {
@@ -257,6 +261,40 @@ export const store = new Vuex.Store({
 
         changePomodoroIntervals (state, payload) {
             state.pomodoro.config.numPomodoros = payload.intervals;
+        },
+
+        addTodoItem (state, payload) {
+            let todoItem = {
+                id: uuidv4(),
+                todoText: payload.todoText,
+                complete: false
+            };
+
+            state.todoList.todos.push(todoItem);
+        },
+
+        toggleTodoItemComplete (state, payload) {
+            let target_uuid = payload.uuid;
+            let target_index = null;
+            let completion_status;
+
+            for (let index = 0; index < state.todoList.todos.length; index++) {
+                if (state.todoList.todos[index].id === target_uuid) {
+                    target_index = index;
+                    completion_status = !state.todoList.todos[index].complete;
+                    break;
+                }
+            }
+            
+            if (target_index !== null) {
+                Vue.set(state.todoList.todos[target_index], 'complete', completion_status);
+            }
+        },
+
+        removeTodoItem (state, payload) {
+            let target_uuid = payload.uuid;
+
+            state.todoList.todos = state.todoList.todos.filter(todo => todo.id !== target_uuid);
         }
     }, 
     actions: {
