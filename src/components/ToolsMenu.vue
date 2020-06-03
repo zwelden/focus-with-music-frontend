@@ -10,10 +10,14 @@
             </div>
         </div>
 
-        <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200" 
+        <div class="tools-menu-item relative flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200" 
             @click="showTool('todoList')">
 
             <font-awesome-icon :icon="['fas', 'list']" class="text-2xl text-teal-700"></font-awesome-icon>
+
+            <div class="side-todo-counter">
+                <TodoCompletionCount />
+            </div>
         </div>
 
         <div class="tools-menu-item flex justify-center items-center shadow-md mb-4 cursor-pointer hover:shadow-lg bg-gray-200"  
@@ -35,11 +39,13 @@
 import { EventBus } from '@/bus/eventBus'
 
 import TimerRing from '@/components/timer/TimerRing.vue'
+import TodoCompletionCount from '@/components/todo_list/TodoCompletionCount.vue'
 
 export default {
     name: 'ToolsMenu',
     components: {
-        TimerRing
+        TimerRing,
+        TodoCompletionCount
     },
     methods: {
         showTool (toolName) {
@@ -71,6 +77,7 @@ export default {
     /* background: #efefef; */
 }
 
+.side-todo-counter,
 .side-timer-ring-wrapper {
     position: absolute;
     top: 50%;
