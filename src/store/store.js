@@ -270,7 +270,7 @@ export const store = new Vuex.Store({
                 complete: false
             };
 
-            state.todoList.todos.push(todoItem);
+            state.todoList.todos.unshift(todoItem);
         },
 
         toggleTodoItemComplete (state, payload) {
