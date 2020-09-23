@@ -12,6 +12,8 @@
             
             <ToolsDisplay />
 
+            <AuthDisplay />
+            
         </div>
         
     </div>
@@ -24,6 +26,7 @@ import MusicGrid from '../components/MusicGrid.vue'
 import GenreMenu from '../components/GenreMenu.vue'
 import ToolsMenu from '../components/ToolsMenu.vue'
 import ToolsDisplay from '../components/ToolsDisplay.vue'
+import AuthDisplay from '../components/AuthDisplay.vue'
 
 export default {
     name: "HomePage",
@@ -32,7 +35,8 @@ export default {
         MusicGrid,
         GenreMenu,
         ToolsMenu,
-        ToolsDisplay
+        ToolsDisplay,
+        AuthDisplay,
     }
 }
 </script>

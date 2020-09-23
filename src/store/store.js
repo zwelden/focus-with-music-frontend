@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
+        is_logged_in: false,
         pinnedMusicContent: [
             {
                 id: 8,
